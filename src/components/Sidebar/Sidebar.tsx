@@ -21,6 +21,8 @@ interface ChildPropsType {
   showDashBoard: boolean;
   setShowDashBoard: React.Dispatch<SetStateAction<boolean>>;
   setShowSearch: React.Dispatch<SetStateAction<boolean>>;
+  showSearch: boolean;
+  setShowUpdateTask: React.Dispatch<SetStateAction<boolean>>;
 }
 
 export const Sidebar = (props: ChildPropsType) => {
@@ -39,7 +41,8 @@ export const Sidebar = (props: ChildPropsType) => {
                 props.setShowDashBoard(false);
                 props.setShowHome(!props.showHome);
                 props.setShowSearch(false);
-                console.log(props.showHome);
+                props.setShowUpdateTask(false);
+                
               }}
               className="sidebar-item"
             >
@@ -52,8 +55,9 @@ export const Sidebar = (props: ChildPropsType) => {
               onClick={() => {
                 props.setShowHome(false);
                 props.setShowDashBoard(!props.showDashBoard);
-                props.setShowSearch(true);
-                console.log(props.showDashBoard);
+                props.setShowSearch(!props.showSearch);
+                props.setShowUpdateTask(false);
+                
               }}
               className="sidebar-item"
             >

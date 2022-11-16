@@ -4,6 +4,7 @@ import { Sidebar } from "../Sidebar/Sidebar";
 import { Task } from "../Task/Task";
 import { AddTask } from "../AddTask/AddTask";
 import { ChangeEvent, Dispatch, useState } from "react";
+import { Modal } from "../Modal/Modal";
 import "./Main.css";
 
 export const Main = () => {
@@ -13,6 +14,9 @@ export const Main = () => {
   const [showDashBoard, setShowDashBoard] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [searchText, setSearchText] = useState<string>("");
+  const [showUpdateTask, setShowUpdateTask] = useState<boolean>(false);
+  const [modalText, setModalText] = useState<string>("");
+  const [id, setId] = useState<number>(0);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setNewTask(event.target.value);
@@ -22,13 +26,14 @@ export const Main = () => {
     const task = {
       taskName: newTask,
       id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
-      dateAdded: new Date(),
+      dateAdded: new Date().toString(),
       completed: false,
     };
     newTask.length === 0
       ? alert("Please input taskname, otherwise it won't be added!")
       : setTodoList([...todoList, task]);
     alert("Task added!");
+    setId(task.id)
   };
 
   const deleteTask = (id: number) => {
@@ -47,9 +52,24 @@ export const Main = () => {
     );
   };
 
+  const updateTask = (id: number, taskName: string) => {
+    setTodoList(
+      todoList.map((task: any) => {
+        if (task.id === id) {
+          return { ...task, taskName: taskName };
+        } else {
+          return task;
+        }
+      })
+    )
+    console.log(id, taskName)
+    setShowUpdateTask(false);
+  }
+
   return (
     <div className="main">
       <Sidebar
+        setShowUpdateTask={setShowUpdateTask}
         setShowSearch={setShowSearch}
         showDashBoard={showDashBoard}
         setShowDashBoard={setShowDashBoard}
@@ -60,6 +80,7 @@ export const Main = () => {
         newTask={newTask}
         handleChange={handleChange}
         setNewTask={setNewTask}
+        showSearch={showSearch}
       />
       <div className="main-container">
         <Header
@@ -90,6 +111,9 @@ export const Main = () => {
             : todoList.map((todo: any) => {
                 return (
                   <Task
+                    setModalText={setModalText}
+                    showUpdateTask={showUpdateTask}
+                    setShowUpdateTask={setShowUpdateTask}
                     taskCompleteToggle={taskCompleteToggle}
                     deleteTask={deleteTask}
                     completed={todo.completed}
@@ -99,6 +123,17 @@ export const Main = () => {
                   />
                 );
               })}
+          {showUpdateTask && (
+            <Modal
+              modalText={modalText}
+              updateTask={updateTask}
+              todoList={todoList}
+              showUpdateTask={showUpdateTask}
+              id={id}
+              setModalText={setModalText}
+              setShowUpdateTask={setShowUpdateTask}
+            />
+          )}
         </div>
       </div>
     </div>

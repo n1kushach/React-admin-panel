@@ -1,0 +1,16 @@
+.modalBackground {
+  border-radius: 20px;
+  height: 50vh;
+  width: 100vh;
+  background-color: lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
