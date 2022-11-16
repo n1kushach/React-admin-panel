@@ -1,5 +1,5 @@
-import "./Footer.css"
+import "./Footer.css";
 
 export const Footer = () => {
-    return <h1>This is footer</h1>
+  return <h1>This is footer</h1>;
 };
