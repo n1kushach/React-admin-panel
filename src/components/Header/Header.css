@@ -1,0 +1,20 @@
+.header {
+    background-color: #4528ff;
+    height: 58px;
+    border-bottom: 0.5px solid white;
+    display: flex;
+    align-items: center;
+}
+
+.wrapper {
+    width: 100%;
+    display: flex;
+    /* align-items: center; */
+    /* align-content: center; */
+    justify-content: center;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+}

@@ -1,0 +1,10 @@
+.addtask { 
+    width: 250px;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    height: 170px;
+    justify-content: center;
+    gap: 25px;
+}

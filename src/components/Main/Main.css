@@ -1,0 +1,33 @@
+.main {
+    display: flex;
+}
+
+.main-container {
+    flex: 10;
+}
+
+.tasks {
+    display: flex;
+    flex-direction: row;
+    /* flex-direction: revert; */
+    /* align-items: center; */
+    gap: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 25px;
+}
+
+.add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tasklist {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 25px;
+    align-items: center;
+    justify-content: space-evenly;
+}
